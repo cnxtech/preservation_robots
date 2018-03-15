@@ -77,6 +77,10 @@ RSpec/MultipleExpectations:
 
 # --- Style ---
 
+Style/ClassVars:
+  Exclude:
+    - robots/preservation/transfer_object.rb # using @@ for class level cache
+
 Style/FrozenStringLiteralComment:
   Enabled: false # avoid cruft in our files for something that MAY be default in Ruby 3.0
 

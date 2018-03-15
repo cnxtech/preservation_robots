@@ -4,6 +4,10 @@ module Preservation
   class TransferObject < Base
     ROBOT_NAME = 'transfer-object'.freeze
 
+    # FIXME: testing if we can cache with robot code
+    # @count is a class instance variable exclusive to TransferObject (no subclasses)
+    @@count = 0
+
     def initialize(opts = {})
       super(REPOSITORY, WORKFLOW_NAME, ROBOT_NAME, opts)
     end
@@ -13,6 +17,10 @@ module Preservation
     def perform(druid)
       @druid = druid
       transfer_object
+      # FIXME: testing if we can cache with robot code
+      @@count += 1
+      # p @@count
+      LyberCore::Log.warn("#{ROBOT_NAME} SHOULD WE CACHE INFO? count is #{@@count}")
     end
 
     private
