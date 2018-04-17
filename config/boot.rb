@@ -1,12 +1,13 @@
+ROBOT_ROOT = File.expand_path(__dir__ + '/..').freeze
+
 # Ensure subsequent requires search the correct local paths
-$LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), '..', 'robots'))
+$LOAD_PATH.unshift File.expand_path('robots', ROBOT_ROOT)
 
 require 'logger'
 # Load the environment file based on Environment.  Default to development
 environment = ENV['ROBOT_ENVIRONMENT'] ||= 'development'
-ROBOT_ROOT = File.expand_path(File.dirname(__FILE__) + '/..')
-ROBOT_LOG = Logger.new(File.join(ROBOT_ROOT, "log/#{environment}.log"))
-ROBOT_LOG.level = Logger::SEV_LABEL.index(ENV['ROBOT_LOG_LEVEL']) || Logger::INFO
+robot_log = Logger.new(File.join(ROBOT_ROOT, "log/#{environment}.log"))
+robot_log.level = Logger::SEV_LABEL.index(ENV['ROBOT_LOG_LEVEL']) || Logger::INFO
 
 # config gem, without Rails, requires we load the config ourselves
 require 'config'
@@ -15,11 +16,11 @@ Config.setup do |config|
   config.env_prefix = 'SETTINGS'
   config.env_separator = '__'
 end
-Config.load_and_set_settings(Config.setting_files(File.dirname(__FILE__), environment))
+Config.load_and_set_settings(Config.setting_files(__dir__, environment))
 
 require 'lyber_core'
 LyberCore::Log.set_logfile(Settings.lybercore_log)
-LyberCore::Log.set_level(ROBOT_LOG.level)
+LyberCore::Log.set_level(robot_log.level)
 
 # Load Resque configuration and controller
 require 'resque'

@@ -11,5 +11,5 @@ SimpleCov.start do
   add_filter 'config'
 end
 
-bootfile = File.join(File.dirname(__FILE__), '..', 'config/boot')
+bootfile = File.join(__dir__, '..', 'config/boot')
 require bootfile

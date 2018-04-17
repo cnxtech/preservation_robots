@@ -24,7 +24,7 @@ slop.parse
 opts = slop.to_h
 
 ENV['ROBOT_ENVIRONMENT'] = opts[:environment] unless opts[:environment].nil?
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path('config/boot', __dir__ + '/..')
 
 # generate the robot job class name
 class_name = LyberCore::Robot.step_to_classname robot

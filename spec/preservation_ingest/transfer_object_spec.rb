@@ -5,7 +5,7 @@ describe Robots::SdrRepo::PreservationIngest::TransferObject do
     from_dir = File.join(Settings.transfer_object.from_dir, bare_druid)
     File.join(from_dir, described_class::VERSION_METADATA_PATH_SUFFIX)
   end
-  let(:deposit_dir_pathname) { Pathname(File.join(File.dirname(__FILE__), '..', 'fixtures', 'deposit', 'foo')) }
+  let(:deposit_dir_pathname) { Pathname(File.join(__dir__, '..', 'fixtures', 'deposit', 'foo')) }
   let(:deposit_bag_pathname) { Pathname(File.join(deposit_dir_pathname, bare_druid)) }
   let(:xfer_obj) { described_class.new }
 
