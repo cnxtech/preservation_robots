@@ -28,3 +28,8 @@ every 1.day, at: '5:10am' do
   set :output, nil
   rake 'preservation_logs', mailto: Settings.email_addresses.user_list
 end
+
+every 5.minutes do
+  set :output, nil
+  rake 'generate_stats', mailto: "saravs@stanford.edu"
+end
