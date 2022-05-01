@@ -167,7 +167,7 @@ GEM
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     iso-639 (0.2.8)
-    json (2.2.0)
+    json (2.6.1)
     link_header (0.0.8)
     lyber-core (5.0.1)
       activesupport
